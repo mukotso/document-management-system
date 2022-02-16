@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,30 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('login', 'API\Auth\LoginController@login');
+Route::post('register', 'API\Auth\RegisterController@register');
+
+
+Route::group(['middleware' => 'auth:api'], function () {
+    //departments
+    Route::get('departments', 'API\DepartmentsController@index');
+    Route::post('departments/create', 'API\DepartmentsController@store');
+    Route::put('departments/update/{department}', 'API\DepartmentsController@update');
+    Route::delete('departments/delete/{department}', 'API\DepartmentsController@destroy');
+
+    //categories
+    Route::get('categories', 'API\CategoriesController@index');
+    Route::post('categories/create', 'API\CategoriesController@store');
+    Route::put('categories/update/{category}', 'API\CategoriesController@update');
+    Route::delete('categories/delete/{category}', 'API\CategoriesController@destroy');
+
+
+    //Documents
+    Route::get('documents', 'API\DocumentsController@index');
+    Route::post('documents/create', 'API\DocumentsController@store');
+    Route::put('documents/update/{document}', 'API\DocumentsController@update');
+    Route::delete('documents/delete/{document}', 'API\DocumentsController@destroy');
+
 });
+
+

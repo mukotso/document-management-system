@@ -18,12 +18,12 @@ class CreateUsersTable extends Migration
             $table->integer('department_id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->integer('tel');
+            $table->bigInteger('tel');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('status');
-            $table->string('avatar');
-            $table->rememberToken();
+            $table->string('avatar')->nullable();
+            $table->rememberToken()->nullable();
             $table->timestamps();
         });
     }
