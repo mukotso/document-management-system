@@ -8,7 +8,11 @@ class Document extends Model
 {
 
     protected $fillable = [
-        'name', 'description', 'status','category_id',
+        'name', 'description', 'status','category_id','uploaded_by'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class ,'uploaded_by');
+    }
 
 }

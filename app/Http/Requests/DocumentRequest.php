@@ -25,7 +25,7 @@ class DocumentRequest extends FormRequest
     {
         return [
             'name' => 'required|max:155',
-            'category_id' => 'required,{$this->Document->id}',
+            'category_id' => 'required',
             'description' => 'required',
         ];
     }
