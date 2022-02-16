@@ -16,12 +16,13 @@ class CreateDocumentAccessRequestsTable extends Migration
         Schema::create('document_access_requests', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->integer('granted_by');
-            $table->integer('document_by');
-            $table->string('status');
-            $table->string('decline_reason');
-            $table->bigInteger('granted_at');
-            $table->bigInteger('granted_duration');
+            $table->integer('granted_by')->nullable();
+            $table->string('description');
+            $table->integer('document_id');
+            $table->string('status')->default('pending_approval');
+            $table->string('decline_reason')->nullable();
+            $table->timestamp('granted_at')->nullable();
+            $table->bigInteger('granted_duration')->nullable();
             $table->timestamps();
         });
     }

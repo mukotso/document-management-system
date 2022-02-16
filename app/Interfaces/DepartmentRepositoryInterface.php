@@ -10,6 +10,6 @@ interface DepartmentRepositoryInterface
     public function getAllDepartments();
     public function deleteDepartment($departmentId);
     public function createDepartment(array $departmentDetails);
-    public function updateDepartment(DepartmentRequest $request, Department $department);
+    public function updateDepartment($department, $newDetails);
 }
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DocumentRequest extends FormRequest
+class DocumentAccessRequestRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,18 +24,16 @@ class DocumentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:155',
-            'category_id' => 'required,{$this->Document->id}',
-            'description' => 'required',
+            'document_id' => 'required, {$this->DocumentAccessRequest->id}',
+            'description' => 'required,{$this->DocumentAccessRequest->id}',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'The name input is required',
             'description.required' => 'The description input is required',
-            'category_id.required' => 'Please select the category',
+            'document_id.required' => 'Please select the document you want to gain access the category',
         ];
     }
 }

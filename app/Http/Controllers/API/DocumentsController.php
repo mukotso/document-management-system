@@ -32,9 +32,9 @@ class DocumentsController extends Controller
         return response()->json($document, 201);
     }
 
-    public function update(DocumentRequest $request,  $document)
+    public function update(DocumentRequest $request, Document $document)
     {
-        $documentDetails = $this->docRepo->updateDocument($request, $document);
+        $documentDetails = $this->docRepo->updateDocument($document, $request->all());
         return response()->json($documentDetails, 201);
     }
 

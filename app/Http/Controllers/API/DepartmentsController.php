@@ -31,9 +31,9 @@ class DepartmentsController extends Controller
         return response()->json($department, 201);
     }
 
-    public function update(DepartmentRequest $request,  $department)
+    public function update(DepartmentRequest $request, Department $department)
     {
-        $department = $this->departmentRepository->updateDepartment($request, $department);
+        $department = $this->departmentRepository->updateDepartment($department, $request->all());
         return response()->json($department, 201);
     }
 

@@ -20,9 +20,9 @@ class DepartmentRepository implements DepartmentRepositoryInterface
     {
         return Department::create($departmentDetails);
     }
-    public function updateDepartment(DepartmentRequest $request, Department $department )
+    public function updateDepartment( $department,$newDetails )
     {
-        return $department->update($request->all());
+        return $department->update($newDetails);
     }
 
 }

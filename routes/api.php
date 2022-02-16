@@ -38,6 +38,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::put('documents/update/{document}', 'API\DocumentsController@update');
     Route::delete('documents/delete/{document}', 'API\DocumentsController@destroy');
 
+
+    //DocumentsAccessRequests
+    Route::get('document-access-requests', 'API\DocumentAccessRequestsController@index');
+    Route::post('document-access-requests/create', 'API\DocumentAccessRequestsController@store');
+    Route::put('document-access-requests/update/{documentAccessRequest}', 'API\DocumentAccessRequestsController@update');
+    Route::delete('document-access-requests/delete/{documentAccessRequest}', 'API\DocumentAccessRequestsController@destroy');
 });
 
 

@@ -31,10 +31,10 @@ class CategoriesController extends Controller
         return response()->json($category, 201);
     }
 
-    public function update(CategoryRequest $request,  $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        $document = $this->categoryRepo->updateCategory($request, $category);
-        return response()->json($document, 201);
+        $category = $this->categoryRepo->updateCategory($category, $request->all());
+        return response()->json($category, 201);
     }
 
     public function destroy(Category $category)
