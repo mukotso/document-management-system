@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Route::get('/{any}', function () {
+//    return view('welcome');
+//})->where('any', '.*');
 
 Route::post('login', 'API\Auth\LoginController@login');
 Route::post('register', 'API\Auth\RegisterController@register');
-
 
 Route::get('departments', 'API\DepartmentsController@index');
 Route::group(['middleware' => 'auth:api'], function () {

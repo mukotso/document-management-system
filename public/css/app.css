@@ -21638,15 +21638,6 @@ video {
           animation: bounce 1s infinite;
 }
 
-input,
-select,
-textarea {
-  border: 1px solid gray;
-  background-color: white;
-  border-radius: 0.25rem;
-  padding: 10px;
-}
-
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

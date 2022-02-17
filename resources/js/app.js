@@ -1,16 +1,22 @@
 
-
 require('./bootstrap');
 
-window.Vue = require('vue');
+// window.Vue = require('vue').default;
+import vuetify from  "../../resources/js/plugins/vuetify";
+import "vuetify/dist/vuetify.min.css";
 
 
-Vue.component('OuterNav', require('./components/Shared/OuterNav.vue').default);
-Vue.component('Analytics', require('./components/Analytics').default);
-Vue.component('Login', require('./components/Auth/Login').default);
-Vue.component('Register', require('./components/Auth/Register').default);
+// Vue.use(Vuetify);
+import Vue from 'vue'
+import router from './router';
+import App from './layouts/App.vue';
+import store from './store'
 
 
 const app = new Vue({
+    router,
+    vuetify,
+    store,
     el: '#app',
+    render: h => h(App)
 });

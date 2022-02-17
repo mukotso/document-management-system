@@ -18,7 +18,7 @@ class LoginController extends Controller
                 return response()->json(['error'=>'Account Disabled Please Contact The System Administrator'], 400);
             }
             $success['token'] =  $user->createToken('MyApp')-> accessToken;
-            return response()->json(['success' => $success], 200);
+            return response()->json(['token' => $success , 'user'=>$user], 200);
         } else {
             return response()->json(['error'=>'Provided Credentials Do Not Match Any Record'], 400);
         }
