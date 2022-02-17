@@ -25,7 +25,9 @@ use Illuminate\Support\Facades\Route;
 
 
 <div id="app">
-    <header class="bg-blue-900 py-6">
+
+
+    <header class="bg-blue-700 py-6">
         <div class="container mx-auto flex justify-between items-center px-6">
             <div>
                 <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
@@ -43,20 +45,8 @@ use Illuminate\Support\Facades\Route;
 
                     <div class="topnav" id="myTopnav">
                         <a href="#"></a>
-                        <a class="no-underline hover:underline
-                                    <?php
-                        $getroute = Route::currentRouteName();
-                        if ($getroute == 'todo.index') {
-                            echo 'active';
-                        }
-                        ?>" href="{{ route('todo.index') }}">{{ __('My Todos') }}</a>
-                        <a class="no-underline hover:underline
-                                      <?php
-                        $getroute = Route::currentRouteName();
-                        if ($getroute == 'post.index') {
-                            echo 'active';
-                        }
-                        ?>" href="{{ route('posts.index') }}">{{ __('Post') }}</a>
+
+
                         <a class="image" href="#"> <img class="avatar" src="{{Storage::url(Auth::user()->avatar)}}"
                                                         alt="Profile"></a>
                         <a href="#"> <span>{{ Auth::user()->name }}</span></a>
@@ -95,19 +85,6 @@ use Illuminate\Support\Facades\Route;
 
 
 </body>
-<script>
-    function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
-    }
 
-</script>
-<script src="{{ asset('js/index.js') }}" defer></script>
-<script src="sweetalert2.all.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
 </html>

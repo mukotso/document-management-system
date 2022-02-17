@@ -21641,8 +21641,7 @@ video {
 input,
 select,
 textarea {
-  border: none;
-  border-bottom: 2px solid #1a202c;
+  border: 1px solid gray;
   background-color: white;
   border-radius: 0.25rem;
   padding: 10px;

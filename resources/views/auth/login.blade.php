@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
     <main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
         <div class="flex">
             <div class="w-full">
@@ -11,6 +14,8 @@
                         LOGIN PAGE</h1>
 
                     </header>
+
+
 
                     <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">
                         @csrf

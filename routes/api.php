@@ -18,9 +18,9 @@ Route::post('login', 'API\Auth\LoginController@login');
 Route::post('register', 'API\Auth\RegisterController@register');
 
 
+Route::get('departments', 'API\DepartmentsController@index');
 Route::group(['middleware' => 'auth:api'], function () {
     //departments
-    Route::get('departments', 'API\DepartmentsController@index');
     Route::post('departments/create', 'API\DepartmentsController@store');
     Route::put('departments/update/{department}', 'API\DepartmentsController@update');
     Route::delete('departments/delete/{department}', 'API\DepartmentsController@destroy');
