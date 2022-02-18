@@ -91,7 +91,7 @@ export default {
 
 </script>
 
-<style >
+<style scoped>
 input,
 select,
 textarea {

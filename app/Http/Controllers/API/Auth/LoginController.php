@@ -26,12 +26,10 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-
         $userData = auth()->user();
         $accessToken = $userData->token();
         $accessToken->revoke();
 
-        error_log('logout successfully');
         return response([
             'success' => true,
             'message' => 'You have been successfully logged out.'

@@ -53,7 +53,7 @@
                                         </v-list-item-icon>
 
                                         <v-list-item-content>
-                                            <v-list-item-title @click.prevent="logOutUser()">Logout</v-list-item-title>
+                                            <v-list-item-title @click="logOutUser()">Logout</v-list-item-title>
                                         </v-list-item-content>
                                     </v-list-item>
                                 </v-list>
@@ -81,18 +81,19 @@
 
                 <script>
                 import {mapGetters} from "vuex";
+                import baseUrl from "../baseUrl";
                 export default {
                     data: () => ({
                         drawer: null
                     ,
                         items: [
                             { title: 'Dashboard', icon: 'mdi-home',to:"/dashboard" },
-                            { title: 'Users', icon: 'mdi-account-group',to:"/login" },
+                            { title: 'Users', icon: 'mdi-account-group',to:"/users" },
                             { title: 'Departments', icon: 'mdi-home-account', to:"/departments"},
                             { title: 'Documents', icon: 'mdi-file-document-multiple', to:"/register"},
-                            { title: 'Categories', icon: 'mdi-shape', to:"/register"},
+                            { title: 'Categories', icon: 'mdi-shape', to:"/categories"},
                             { title: 'Roles and Permissions', icon: 'mdi-account-wrench', to:"/register"},
-                            { title: 'Profile', icon: 'mdi-account', to:"/register"},
+                            { title: 'Profile', icon: 'mdi-account', to:"/profile"},
                             ],
                     }),
                     computed: {
@@ -104,10 +105,19 @@
 
                     methods:{
                         logOutUser(){
-                            this.$store.dispatch('auth/logout');
-                            this.$router.push('/');
+                            // axios.post(baseUrl+'api/logout')
+                            //     .then((response) => {
+                                    // console.log(response.data)
+                                    // return
+                                    this.$store.dispatch('auth/logout');
+                                    this.$router.push('/');
+                                // })
+                                // .catch(function (error) {
+                                //     console.log(error.response.data);
+                                // })
+
                         }
-                    }
+                     },
                 }
                 </script>
 <style scoped>

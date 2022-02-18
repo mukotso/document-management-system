@@ -5,7 +5,24 @@ import VueRouter from 'vue-router';
 import Login from './components/Auth/Login';
 import Dashboard from './components/Dashboard';
 import Register from './components/Auth/Register';
-import Departments from './components/Departments';
+import Departments from './components/Departments/Departments';
+import AddDepartments from './components/Departments/AddDepartment';
+import EditDepartments from './components/Departments/EditDepartment';
+
+//users
+
+import Users from './components/Users/Users';
+import AddUser from './components/Users/AddUser';
+import EditUser from './components/Users/EditUser';
+
+//categories
+import Categories from './components/Categories/Categories';
+import AddCategory from './components/Categories/AddCategory';
+import EditCategory from './components/Categories/EditCategory';
+
+
+import Profile from './components/Profile';
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -38,6 +55,91 @@ const router = new VueRouter({
             path: '/departments',
             name: 'departments',
             component: Departments,
+            meta: {
+                requiresAuth:true
+            },
+        },
+        {
+            path: '/departments/add',
+            name: 'createDepartment',
+            component: AddDepartments,
+            meta: {
+                requiresAuth:true
+            },
+        },
+
+        {
+            path: '/departments/update/:id',
+            name: 'editDepartment',
+            component: EditDepartments,
+            meta: {
+                requiresAuth:true
+            },
+        },
+
+
+        //categories
+
+        {
+            path: '/categories',
+            name: 'categories',
+            component: Categories,
+            meta: {
+                requiresAuth:true
+            },
+        },
+        {
+            path: '/categories/add',
+            name: 'createDepartment',
+            component: AddCategory,
+            meta: {
+                requiresAuth:true
+            },
+        },
+
+        {
+            path: '/categories/update/:id',
+            name: 'editCategory',
+            component: EditCategory,
+            meta: {
+                requiresAuth:true
+            },
+        },
+
+
+        //users
+        {
+            path: '/users',
+            name: 'users',
+            component: Users,
+            meta: {
+                requiresAuth:true
+            },
+        },
+        {
+            path: '/users/add',
+            name: 'createUser',
+            component: AddUser,
+            meta: {
+                requiresAuth:true
+            },
+        },
+
+        {
+            path: '/departments/update/:id',
+            name: 'editDepartment',
+            component: EditUser,
+            meta: {
+                requiresAuth:true
+            },
+        },
+
+
+
+        {
+            path: '/profile',
+            name: 'profile',
+            component: Profile,
             meta: {
                 requiresAuth:true
             },
