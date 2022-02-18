@@ -52,6 +52,9 @@
                             @enderror
                         </div>
 
+
+                        
+
                                             <div class="flex items-center">
                                                 <label class="inline-flex items-center text-sm text-gray-700" for="remember">
                                                     <input type="checkbox" name="remember" id="remember" class="form-checkbox"
