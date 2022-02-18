@@ -33,7 +33,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'The name input is required',
-            'description.required' => 'The description input is required',
+            'description.required' => 'The description input is required ',
         ];
     }
 }

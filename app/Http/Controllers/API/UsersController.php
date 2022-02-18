@@ -42,4 +42,5 @@ class UsersController extends Controller
         $this->userRepository->deleteUser($user->id);
         return response()->json(200);
     }
+
 }
