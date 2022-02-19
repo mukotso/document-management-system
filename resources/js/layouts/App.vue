@@ -92,7 +92,7 @@
                             { title: 'Departments', icon: 'mdi-home-account', to:"/departments"},
                             { title: 'Documents', icon: 'mdi-file-document-multiple', to:"/register"},
                             { title: 'Categories', icon: 'mdi-shape', to:"/categories"},
-                            { title: 'Roles and Permissions', icon: 'mdi-account-wrench', to:"/register"},
+                            { title: 'Roles and Permissions', icon: 'mdi-account-wrench', to:"/my-roles-and-permissions"},
                             { title: 'Profile', icon: 'mdi-account', to:"/profile"},
                             ],
                     }),

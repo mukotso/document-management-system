@@ -8,12 +8,19 @@
             required
         ></v-text-field>
 
+        <v-textarea
+            autocomplete="description"
+            label="description"
+            required
+            v-model="form.description"
+        ></v-textarea>
+
         <v-btn
             class="mr-4"
             color="primary"
             type="submit"
         >
-            SAVE
+            UPDATE DETAILS
         </v-btn>
 
     </form>
@@ -29,16 +36,30 @@ export default {
     data: () => ({
         form:{
             name: '',
+            description:''
         }
 
     }),
+    beforeMount() {
+        const categoryId = this.$route.params.id;
+        axios.get(baseUrl+'api/categories/'+categoryId)
+            .then((response) => {
+                console.log(response.data);
+                this.form = response.data;
 
+            })
+            .catch(function (error) {
+                console.log(error.response.data);
+
+            })
+    },
     methods: {
         editCategory () {
-            axios.post(baseUrl+'api/categories/update/:id', this.form)
+            const categoryId = this.$route.params.id;
+            axios.put(baseUrl+'api/categories/update/'+categoryId, this.form)
                 .then((response) => {
                     this.$router.push('/categories');
-                    Swal.fire('SUCCESS', 'Categories Added Successfully.', 'success')
+                    Swal.fire('SUCCESS', 'Categories Updated Successfully.', 'success')
                 })
                 .catch(function (error) {
                     console.log(error.response.data);

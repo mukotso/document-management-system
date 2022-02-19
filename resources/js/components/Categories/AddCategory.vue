@@ -8,10 +8,17 @@
             required
         ></v-text-field>
 
+        <v-textarea
+            autocomplete="description"
+            label="description"
+            required
+            v-model="form.description"
+        ></v-textarea>
+
         <v-btn
             class="mr-4"
             color="primary"
-            type="submit"
+            type="addCategory"
         >
             SAVE
         </v-btn>
@@ -29,6 +36,7 @@ export default {
     data: () => ({
         form:{
             name: '',
+            description:'',
         }
 
     }),
@@ -38,7 +46,7 @@ export default {
             axios.post(baseUrl+'api/categories/create', this.form)
                 .then((response) => {
                     this.$router.push('/categories');
-                    Swal.fire('SUCCESS', 'Categories Added Successfully.', 'success')
+                    Swal.fire('SUCCESS', 'Category Added Successfully.', 'success')
                 })
                 .catch(function (error) {
                     console.log(error.response.data);

@@ -32,12 +32,14 @@ Route::delete('departments/delete/{department}', 'API\DepartmentsController@dest
 
 //categories
 Route::get('categories', 'API\CategoriesController@index');
+Route::get('categories/{category}', 'API\CategoriesController@show');
 Route::post('categories/create', 'API\CategoriesController@store');
 Route::put('categories/update/{category}', 'API\CategoriesController@update');
 Route::delete('categories/delete/{category}', 'API\CategoriesController@destroy');
 
 //users
 Route::get('users', 'API\UsersController@index');
+Route::get('users/{user}', 'API\UsersController@show');
 Route::post('users/create', 'API\UsersController@store');
 Route::put('users/update/{user}', 'API\UsersController@update');
 Route::delete('users/delete/{user}', 'API\UsersController@destroy');

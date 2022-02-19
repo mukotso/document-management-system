@@ -22,17 +22,17 @@ import EditCategory from './components/Categories/EditCategory';
 
 
 import Profile from './components/Profile';
-
+import Roles from './components/Roles';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: 'history',
     linkExactActiveClass: 'active',
     routes: [
-        // {
-        //     path: '/',
-        //     component: Login
-        // },
+        {
+            path: '/',
+            component: Login
+        },
 
         {
             path: '/login',
@@ -125,9 +125,10 @@ const router = new VueRouter({
             },
         },
 
+
         {
-            path: '/departments/update/:id',
-            name: 'editDepartment',
+            path: '/users/update/:id',
+            name: 'editUser',
             component: EditUser,
             meta: {
                 requiresAuth:true
@@ -144,6 +145,15 @@ const router = new VueRouter({
                 requiresAuth:true
             },
         },
+        {
+            path: '/my-roles-and-permissions',
+            name: 'roles',
+            component: Roles,
+            meta: {
+                requiresAuth:true
+            },
+        },
+
     ]
 });
 

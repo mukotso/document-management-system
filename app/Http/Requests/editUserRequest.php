@@ -25,7 +25,7 @@ class editUserRequest extends FormRequest
     {
         return [
             'name' => 'max:155',
-            'email' => 'email|unique:users',
+            'email' => 'email|required',
             'tel' => 'regex:/([0-9\s\-\+\(\)]*)$/|min:10|numeric',
             'department_id' => 'integer',
         ];

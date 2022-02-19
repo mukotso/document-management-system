@@ -31,6 +31,11 @@ class CategoriesController extends Controller
         return response()->json($category, 201);
     }
 
+    public function show(Category $category)
+    {
+        return response()->json($category);
+    }
+
     public function update(CategoryRequest $request, Category $category)
     {
         $category = $this->categoryRepo->updateCategory($category, $request->all());

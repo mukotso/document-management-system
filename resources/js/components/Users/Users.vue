@@ -79,9 +79,10 @@ export default {
             },
             { text: 'Email', value: 'email' },
             { text: 'Phone Number', value: 'tel' },
+            { text: 'User Type', value: 'type' },
             { text: 'Status', value: 'status' },
             { text: 'created-at', value: 'created_at' },
-            { text: 'Department', value: 'department_id' },
+            { text: 'Department', value: 'department.name' },
             { text: 'Actions', value: 'actions', sortable: false },
         ],
         users: [],
@@ -123,12 +124,12 @@ export default {
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete(baseUrl+'departments/delete/'+item.id).then((response) => {
+                    axios.delete(baseUrl+'api/users/delete/'+user.id).then((response) => {
 
                         if (response.status == 200) {
                             console.log(response);
-                            // this.movies = this.movies.filter(response => response.id !== movie.id)
-                            Swal.fire('Deleted!', 'MOVIE has been deleted.', 'success')
+                             this.users = this.users.filter(response => response.id !== user.id)
+                            Swal.fire('Deleted!', 'User has been deleted.', 'success')
                         } else {
                             Swal.fire({
                                 title: 'Error!',

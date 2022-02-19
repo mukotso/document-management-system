@@ -121,12 +121,12 @@ export default {
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete(baseUrl+'departments/delete/'+department.id).then((response) => {
+                    axios.delete(baseUrl+'api/departments/delete/'+department.id).then((response) => {
 
                         if (response.status == 200) {
                             console.log(response);
-                            // this.movies = this.movies.filter(response => response.id !== movie.id)
-                            Swal.fire('Deleted!', 'MOVIE has been deleted.', 'success')
+                            this.departments = this.departments.filter(response => response.id !== department.id)
+                            Swal.fire('Deleted!', 'Department has been deleted.', 'success')
                         } else {
                             Swal.fire({
                                 title: 'Error!',

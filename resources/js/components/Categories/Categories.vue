@@ -13,7 +13,7 @@
         </v-card-title>
         <v-data-table
             :headers="headers"
-            :category="categories"
+            :items="categories"
             sort-by="name"
             class="elevation-1"
             :search="search"
@@ -44,17 +44,17 @@
 
                 </v-toolbar>
             </template>
-            <template v-slot:category.actions="{ category }">
+            <template v-slot:item.actions="{ item }">
                 <v-icon
                     medium
                     class="mr-2 editIcon"
-                    @click="editCategory(category)"
+                    @click="editCategory(item)"
                 >
                     mdi-pencil
                 </v-icon>
                 <v-icon
                     medium
-                    @click="deleteCategory(category)"
+                    @click="deleteCategory(item)"
                     class="deleteIcon"
                 >
                     mdi-delete
@@ -106,7 +106,7 @@ export default {
 
         },
 
-        editDepartment (department) {
+        editCategory (item) {
             this.$router.push('/categories/update/'+item.id);
         },
 
@@ -121,12 +121,12 @@ export default {
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete(baseUrl+'departments/delete/'+department.id).then((response) => {
+                    axios.delete(baseUrl+'api/categories/delete/'+category.id).then((response) => {
 
                         if (response.status == 200) {
                             console.log(response);
-                            // this.movies = this.movies.filter(response => response.id !== movie.id)
-                            Swal.fire('Deleted!', 'MOVIE has been deleted.', 'success')
+                            this.categories = this.categories.filter(response => response.id !== category.id)
+                            Swal.fire('Deleted!', 'Category has been deleted.', 'success')
                         } else {
                             Swal.fire({
                                 title: 'Error!',

@@ -20,17 +20,22 @@
             required
         ></v-text-field>
 
-        <v-text-field
-            v-model="form.department"
-            label="Department"
-            required
-        ></v-text-field>
 
-        <v-text-field
-            v-model="form.userType"
-            label="User Type"
+        <v-select
+            v-model="form.department_id"
+            :items="departments"
+            :item-text="'name'"
+            :item-value="'id'"
+            label="Assign Department"
             required
-        ></v-text-field>
+        ></v-select>
+
+        <v-select
+            v-model="form.type"
+            :items="userTypes"
+            label=" Assign User Type"
+            required
+        ></v-select>
 
         <v-btn
             class="mr-4"
@@ -54,12 +59,24 @@ export default {
         form:{
             name: '',
             email: '',
-            department: '',
+            department_id: '',
             tel: '',
-            userType:''
-        }
+            type:''
+        },
+            userTypes: [
+                'Manager',
+                'Analyst',
+                'Below Analyst',
+            ],
+        departments:"",
+
 
     }),
+
+    beforeMount () {
+        this.getDepartments()
+
+    },
 
     methods: {
         addUser () {
@@ -72,6 +89,21 @@ export default {
                     console.log(error.response.data);
 
                 })
+        },
+
+        getDepartments () {
+            axios.get(baseUrl+'/api/departments')
+                .then((response) => {
+                    console.log(response.data);
+                    this.departments = response.data;
+
+
+                })
+                .catch(function (error) {
+                    console.log(error.response.data);
+
+                })
+
         },
 
 

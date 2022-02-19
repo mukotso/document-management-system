@@ -10,7 +10,7 @@ class UserRepository implements UserRepositoryInterface
 {
     public function getAllUsers()
     {
-        return User::all();
+        return User::with('department')->get();
     }
     public function deleteUser($userId)
     {
@@ -22,11 +22,19 @@ class UserRepository implements UserRepositoryInterface
         $hashedPassword = bcrypt($randomPassword);
         $userDetails['password']=$hashedPassword;
         $userDetails['status']='active';
+        $userDetails['tel'] = '+254' . $userDetails['tel'];
+        $useData['email'] = strtolower(trim($userDetails['email']));
         return User::create($userDetails);
     }
     public function updateUser( $user,$newDetails )
     {
         return $user->update($newDetails);
     }
+
+    public function showUser($user)
+    {
+        return User::where('id', $user)->with('department')->get();
+    }
+
 
 }

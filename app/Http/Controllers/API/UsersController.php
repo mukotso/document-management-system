@@ -31,6 +31,12 @@ class UsersController extends Controller
         return response()->json($user, 201);
     }
 
+    public function show( $user)
+    {
+        $user = $this->userRepository->showUser($user);
+        return response()->json($user);
+    }
+
     public function update(editUserRequest $request, User $user)
     {
         $user = $this->userRepository->updateUser($user, $request->all());
