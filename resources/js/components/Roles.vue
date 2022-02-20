@@ -18,16 +18,21 @@
 
                 <v-card-text>
                     <div class="font-weight-bold profile">
-
-
+                    <h1 v-if="user.role_id==1">SUPER ADMIN</h1>
+                        <h1 v-if="user.role_id==2">MANAGER</h1>
+                        <h1 v-if="user.role_id==3">ANALYST</h1>
+                        <h1 v-if="user.role_id==4">BELOW ANALYST</h1>
+                    <ol v-for="(userPermission ,index) in userDetails">
+                        <h2>{{userPermission.permission}}</h2>
+                    </ol>
                     </div>
-
 
                 </v-card-text>
             </v-card>
         </v-row>
     </v-container>
 </template>
+
 
 <script>
 import {mapGetters} from "vuex";
@@ -39,6 +44,7 @@ export default {
             userDetails:'',
         }
     },
+
     computed: {
         ...mapGetters('auth', {
             authState: 'authState',
@@ -47,8 +53,8 @@ export default {
     },
 
     beforeMount() {
-        const userId = this.user.id;
-        axios.get(baseUrl+'api/users/'+userId)
+        const roleId = this.user.role_id;
+        axios.get(baseUrl+'api/users/roles/'+roleId)
             .then((response) => {
                 console.log(response.data);
                 this.userDetails = response.data;
@@ -63,6 +69,9 @@ export default {
 </script>
 
 <style scoped>
-
+h2{
+    font-size: 18px;
+    line-height:25px;
+}
 </style>
 

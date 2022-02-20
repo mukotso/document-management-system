@@ -60,7 +60,8 @@ export default {
             name: '',
             category_id: '',
             access_level:'',
-            document:''
+            document:'',
+            department_id:''
         },
         currentFile: undefined,
         progress: 0,
@@ -115,23 +116,6 @@ export default {
         },
 
 
-        // addDocument () {
-        //     axios.post(baseUrl+'api/documents/create', this.form,
-        //     {
-        //         headers: {
-        //             'Content-Type': 'multipart/form-data'
-        //         }
-        //     }
-        //     )
-        //         .then((response) => {
-        //             this.$router.push('/documents');
-        //             Swal.fire('SUCCESS', 'Document Added Successfully.', 'success')
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error.response.data);
-        //
-        //         })
-        // },
 
         getCategories () {
             console.log(window.localStorage.getItem('token'))

@@ -45,6 +45,11 @@ Route::get('users/{user}', 'API\UsersController@show');
 Route::post('users/create', 'API\UsersController@store');
 Route::put('users/update/{user}', 'API\UsersController@update');
 Route::delete('users/delete/{user}', 'API\UsersController@destroy');
+Route::get('/users/roles/{id}', 'API\UsersController@getUserPermissions');
+
+
+
+Route::get('/analytics', 'API\AnalyticsController@analytics');
 
 //Documents
 Route::get('documents', 'API\DocumentsController@index');

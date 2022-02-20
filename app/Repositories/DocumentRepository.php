@@ -37,7 +37,7 @@ class DocumentRepository implements DocumentRepositoryInterface
         $documentDetails['uploaded_by']=2;
         $document = Document::create($documentDetails);
         DepartmentDocument::create([
-            'department_id' => $document->user->department_id,
+            'department_id' => $document->user[0]->department_id,
             'document_id' => $document->id,
         ]);
 

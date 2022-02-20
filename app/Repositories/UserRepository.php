@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Interfaces\UserRepositoryInterface;
 use App\Mail\UserRegistration;
 use App\Models\Department;
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -15,7 +16,7 @@ class UserRepository implements UserRepositoryInterface
 {
     public function getAllUsers()
     {
-        return User::with('department')->get();
+        return User::where('role_id','!=',1)->with('department')->get();
     }
 
     public function deleteUser($userId)
@@ -46,7 +47,7 @@ class UserRepository implements UserRepositoryInterface
                 return $user;
             } catch (Exception $ex) {
                 DB::rollBack();
-                return response()->json('User Not Created an errror ...Occured..Please try again ');
+                return response()->json('error','400');
             }
         }, 2);
     }
@@ -61,5 +62,8 @@ class UserRepository implements UserRepositoryInterface
         return User::where('id', $user)->with('department')->get();
     }
 
-
+    public function getUserPermissions($roleId)
+    {
+        return Permission::where('role_id',$roleId)->get();
+    }
 }

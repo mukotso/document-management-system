@@ -8,7 +8,7 @@
                         <h1 class="text-gray-800 dark:text-gray-100 font-bold mb-3">TOTAL USERS</h1>
                         <div class="analytics">
                             <v-icon class="icon">mdi-account-group</v-icon>
-                            <h1>14</h1>
+                            <h1>{{analytics.user}}</h1>
                         </div>
 
                     </div>
@@ -20,7 +20,7 @@
                         <h1 class="text-gray-800 dark:text-gray-100 font-bold mb-3">TOTAL CATEGORIES</h1>
                         <div class="analytics">
                             <v-icon class="icon">mdi-shape</v-icon>
-                            <h1>14</h1>
+                            <h1>{{analytics.category}}</h1>
                         </div>
                     </div>
                     <div>
@@ -32,7 +32,7 @@
                         <h1 class="text-gray-800 dark:text-gray-100 font-bold mb-3">TOTAL DEPARTMENTS</h1>
                         <div class="analytics">
                             <v-icon class="icon"> mdi-home-account</v-icon>
-                            <h1>14</h1>
+                            <h1>{{analytics.department}}</h1>
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@
                         <h1 class="text-gray-800 dark:text-gray-100 font-bold mb-3">MANAGERS</h1>
                         <div class="analytics">
                             <v-icon class="icon">mdi-account-group</v-icon>
-                            <h1>14</h1>
+                            <h1>{{analytics.managers}}</h1>
                         </div>
                     </div>
 
@@ -54,7 +54,7 @@
                         <h1 class="text-gray-800 dark:text-gray-100 font-bold mb-3">ANALYSTS</h1>
                         <div class="analytics">
                             <v-icon class="icon">mdi-account-group</v-icon>
-                            <h1>14</h1>
+                            <h1>{{analytics.analysts}}</h1>
                         </div>
                     </div>
 
@@ -66,7 +66,7 @@
                         <h1 class="text-gray-800 dark:text-gray-100 font-bold mb-3">BELOW ANALYSTS</h1>
                         <div class="analytics">
                             <v-icon class="icon">mdi-account-group</v-icon>
-                            <h1>14</h1>
+                            <h1>{{analytics.belowAnalysts}}</h1>
                         </div>
                     </div>
 
@@ -79,19 +79,21 @@
 </template>
 
 <script>
+import baseUrl from "../baseUrl";
+
 export default {
     name: "Analytics",
 
     data() {
         return {
-            departments: null,
+            analytics: null,
         }
     },
     beforeMount() {
-        axios.get('http://document-management-system.appp/api/documents')
+        axios.get(baseUrl+'/api/analytics/')
             .then((response) => {
                 console.log(response.data);
-                this.departments = response.data;
+                this.analytics = response.data;
             })
             .catch(function (error) {
                 console.log(error);

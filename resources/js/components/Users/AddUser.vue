@@ -66,9 +66,9 @@ export default {
             role_id:0
         },
             userTypes: [
-        {text:1, value:"Manager"},
-        {text:2, value:"Analyst"},
-        {text:3, value:"Below Analyst"},
+        {text:2, value:"Manager"},
+        {text:3, value:"Analyst"},
+        {text:4, value:"Below Analyst"},
     ],
         departments:"",
 
@@ -85,6 +85,7 @@ export default {
             console.log(this.form.role_id);
             axios.post(baseUrl+'api/users/create', this.form)
                 .then((response) => {
+                    if(response.status==200)
                     this.$router.push('/users');
                     Swal.fire('SUCCESS', 'User Added and Verification Email Sent Successfully.', 'success')
                 })

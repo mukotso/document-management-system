@@ -50,4 +50,10 @@ class UsersController extends Controller
         return response()->json(200);
     }
 
+    public function getUserPermissions($id)
+    {
+       $permissions= $this->userRepository->getUserPermissions($id);
+        return response()->json($permissions,200);
+    }
+
 }

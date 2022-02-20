@@ -31,11 +31,57 @@
                                     dense
                                     nav
                                 >
-                                    <v-list-item
-                                        v-for="item in items"
+                                    <v-list-item v-if="user.role_id==1"
+                                        v-for="item in superAdminItems"
                                         :key="item.title"
                                         :to="item.to"
                                         link
+                                    >
+                                        <v-list-item-icon>
+                                            <v-icon>{{ item.icon }}</v-icon>
+                                        </v-list-item-icon>
+
+                                        <v-list-item-content>
+                                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
+
+
+                                    <v-list-item v-if="user.role_id==2"
+                                                 v-for="item in managerItems"
+                                                 :key="item.title"
+                                                 :to="item.to"
+                                                 link
+                                    >
+                                        <v-list-item-icon>
+                                            <v-icon>{{ item.icon }}</v-icon>
+                                        </v-list-item-icon>
+
+                                        <v-list-item-content>
+                                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
+
+                                    <v-list-item v-if="user.role_id==3"
+                                                 v-for="item in AnalystItems"
+                                                 :key="item.title"
+                                                 :to="item.to"
+                                                 link
+                                    >
+                                        <v-list-item-icon>
+                                            <v-icon>{{ item.icon }}</v-icon>
+                                        </v-list-item-icon>
+
+                                        <v-list-item-content>
+                                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
+
+                                    <v-list-item v-if="user.role_id==4"
+                                                 v-for="item in AnalystItems"
+                                                 :key="item.title"
+                                                 :to="item.to"
+                                                 link
                                     >
                                         <v-list-item-icon>
                                             <v-icon>{{ item.icon }}</v-icon>
@@ -86,7 +132,7 @@
                     data: () => ({
                         drawer: null
                     ,
-                        items: [
+                        SuperAdminItems: [
                             { title: 'Dashboard', icon: 'mdi-home',to:"/dashboard" },
                             { title: 'Users', icon: 'mdi-account-group',to:"/users" },
                             { title: 'Departments', icon: 'mdi-home-account', to:"/departments"},
@@ -97,6 +143,25 @@
                             { title: 'Roles and Permissions', icon: 'mdi-account-wrench', to:"/my-roles-and-permissions"},
                             { title: 'Profile', icon: 'mdi-account', to:"/profile"},
                             ],
+
+                        managerItems: [
+                            { title: 'Dashboard', icon: 'mdi-home',to:"/dashboard" },
+                            { title: 'Users', icon: 'mdi-account-group',to:"/users" },
+                            { title: 'Documents', icon: 'mdi-file-document-multiple', to:"/documents"},
+                            { title: 'Documents History', icon: 'mdi-file-document-multiple', to:"documents-history"},
+                            { title: 'My Temporary Documents', icon: 'mdi-file-document-multiple', to:"/my-temporary-documents"},
+                            { title: 'Categories', icon: 'mdi-shape', to:"/categories"},
+                            { title: 'Roles and Permissions', icon: 'mdi-account-wrench', to:"/my-roles-and-permissions"},
+                            { title: 'Profile', icon: 'mdi-account', to:"/profile"},
+                        ],
+                        AnalystItems: [
+                            { title: 'Dashboard', icon: 'mdi-home',to:"/dashboard" },
+                            { title: 'Documents', icon: 'mdi-file-document-multiple', to:"/documents"},
+                            { title: 'Documents History', icon: 'mdi-file-document-multiple', to:"documents-history"},
+                            { title: 'My Temporary Documents', icon: 'mdi-file-document-multiple', to:"/my-temporary-documents"},
+                            { title: 'Roles and Permissions', icon: 'mdi-account-wrench', to:"/my-roles-and-permissions"},
+                            { title: 'Profile', icon: 'mdi-account', to:"/profile"},
+                        ],
                     }),
                     computed: {
                         ...mapGetters('auth', {
