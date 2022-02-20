@@ -18,15 +18,17 @@ use Illuminate\Support\Facades\Route;
 //})->where('any', '.*');
 
 Route::post('login', 'API\Auth\LoginController@login');
-Route::post('logout', 'API\Auth\LoginController@logout');
+Route::get('logout', 'API\Auth\LoginController@logout');
 Route::post('register', 'API\Auth\RegisterController@register');
 
 
 Route::get('departments', 'API\DepartmentsController@index');
+
 //Route::group(['middleware' => 'auth:api'], function () {
 //departments
 Route::post('departments/create', 'API\DepartmentsController@store');
-Route::get('departments/{department}', 'API\DepartmentsController@show');
+Route::get('department-documents/{department}', 'API\DocumentsController@filterDepartmentDocuments');
+Route::get('departments/{department}', 'API\DepartmentsController@');
 Route::put('departments/update/{department}', 'API\DepartmentsController@update');
 Route::delete('departments/delete/{department}', 'API\DepartmentsController@destroy');
 
@@ -46,10 +48,17 @@ Route::delete('users/delete/{user}', 'API\UsersController@destroy');
 
 //Documents
 Route::get('documents', 'API\DocumentsController@index');
+Route::post('document-access-request/create', 'API\DocumentsController@storeAccessRequest');
+Route::Delete('access-request-documents/delete/{document}', 'API\DocumentsController@DestroyAccessRequest');
+Route::get('documents-history', 'API\DocumentsController@history');
+Route::get('documents-download/{document}', 'API\DocumentsController@download');
 Route::post('documents/create', 'API\DocumentsController@store');
 Route::put('documents/update/{document}', 'API\DocumentsController@update');
 Route::delete('documents/delete/{document}', 'API\DocumentsController@destroy');
-
+Route::get('my-access-requests-documents/{id}', 'API\DocumentsController@myAccessRequest');
+Route::post('/documents-access-request/approve/', 'API\DocumentsController@approveAccessRequest');
+Route::post('/documents-access-request/reject-approval', 'API\DocumentsController@rejectAccessRequest');
+Route::get('/temporary-documents/{id}', 'API\DocumentsController@getTemporaryDocuments');
 
 //DocumentsAccessRequests
 Route::get('document-access-requests', 'API\DocumentAccessRequestsController@index');

@@ -28,6 +28,7 @@ class UsersController extends Controller
     public function store(addUserRequest $request)
     {
         $user = $this->userRepository->createUser($request->all());
+
         return response()->json($user, 201);
     }
 

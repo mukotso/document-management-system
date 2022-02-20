@@ -10,8 +10,7 @@
 
                         </header>
 
-                        <form @submit.prevent="loginUser" class="w-full mt-10 px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST">
-
+                        <form @submit="loginUser" class="w-full mt-10 px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST">
                             <div class="flex flex-wrap">
                                 <label for="email" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
                                     Email Address
@@ -53,6 +52,8 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
     data() {
         return {
@@ -64,7 +65,8 @@ export default {
     },
 
     methods:{
-        loginUser() {
+        loginUser(e) {
+            e.preventDefault();
             console.log(this.form);
             axios.post('http://document-management-system.appp/api/login', this.form)
                 .then((response) => {
@@ -73,7 +75,12 @@ export default {
 
                 })
                 .catch(function (error) {
-                    console.log(error.response.data);
+                    Swal.fire({
+                        title: 'Error!',
+                        text: error.response.data.error,
+                        icon: 'error',
+                        confirmButtonText: 'TRY AGAIN'
+                    })
 
                 })
 

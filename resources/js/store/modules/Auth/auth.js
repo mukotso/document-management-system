@@ -18,8 +18,9 @@ export const auth = {
 
     actions: {
         login({commit},data) {
+            console.log(data.token);
             if (data.token) {
-                localStorage.setItem('token', JSON.stringify(data.token));
+                localStorage.setItem('token', data.token.toString());
                 localStorage.setItem('user', JSON.stringify(data.user));
             }
 

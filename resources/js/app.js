@@ -8,7 +8,6 @@ import "vuetify/dist/vuetify.min.css";
 
 import VueSweetalert2 from 'vue-sweetalert2';
 Vue.use(VueSweetalert2);
-
 //global filter
 Vue.filter("formatDate", function (value) {
     return moment(value).format('MMMM Do YYYY, h:mm:ss a')

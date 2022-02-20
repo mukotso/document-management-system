@@ -20,6 +20,15 @@ import Categories from './components/Categories/Categories';
 import AddCategory from './components/Categories/AddCategory';
 import EditCategory from './components/Categories/EditCategory';
 
+import documentsHistory from './components/Documents/DocumentsHistory';
+import temporaryDocuments from './components/Documents/MyTemporaryDocuments';
+import documentAccessRequest from './components/Documents/DocumentAccessRequests';
+import newDocumentAccessRequest from './components/Documents/NewDocumentAccessRequest';
+
+//documents
+import Documents from './components/Documents/Documents';
+import AddDocument from './components/Documents/AddDocument';
+import EditDocument from './components/Documents/EditDocument';
 
 import Profile from './components/Profile';
 import Roles from './components/Roles';
@@ -78,6 +87,8 @@ const router = new VueRouter({
         },
 
 
+
+
         //categories
 
         {
@@ -90,7 +101,7 @@ const router = new VueRouter({
         },
         {
             path: '/categories/add',
-            name: 'createDepartment',
+            name: 'createCategory',
             component: AddCategory,
             meta: {
                 requiresAuth:true
@@ -134,6 +145,67 @@ const router = new VueRouter({
                 requiresAuth:true
             },
         },
+
+        //documents
+
+        {
+            path: '/documents',
+            name: 'documents',
+            component: Documents,
+            meta: {
+                requiresAuth:true
+            },
+        },
+        {
+            path: '/documents/add',
+            name: 'createDocument',
+            component: AddDocument,
+            meta: {
+                requiresAuth:true
+            },
+        },
+
+
+        {
+            path: '/documents/update/:id',
+            name: 'editDocument',
+            component: EditDocument,
+            meta: {
+                requiresAuth:true
+            },
+        },
+        {
+            path: '/documents-history',
+            component: documentsHistory,
+            meta: {
+                requiresAuth:true
+            },
+        },
+
+        {
+            path: '/my-temporary-documents',
+            component: temporaryDocuments,
+            meta: {
+                requiresAuth:true
+            },
+        },
+
+        {
+            path: '/my-document-access-requests',
+            component: documentAccessRequest,
+            meta: {
+                requiresAuth:true
+            },
+        },
+
+        {
+            path: '/new-document-access-request',
+            component:newDocumentAccessRequest,
+            meta: {
+                requiresAuth:true
+            },
+        },
+
 
 
 

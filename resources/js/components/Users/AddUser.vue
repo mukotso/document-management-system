@@ -31,9 +31,11 @@
         ></v-select>
 
         <v-select
-            v-model="form.type"
+            v-model="form.role_id"
             :items="userTypes"
-            label=" Assign User Type"
+            :item-text="'value'"
+            :item-value="'text'"
+            label=" Assign Role"
             required
         ></v-select>
 
@@ -61,13 +63,13 @@ export default {
             email: '',
             department_id: '',
             tel: '',
-            type:''
+            role_id:0
         },
             userTypes: [
-                'Manager',
-                'Analyst',
-                'Below Analyst',
-            ],
+        {text:1, value:"Manager"},
+        {text:2, value:"Analyst"},
+        {text:3, value:"Below Analyst"},
+    ],
         departments:"",
 
 
@@ -80,13 +82,19 @@ export default {
 
     methods: {
         addUser () {
+            console.log(this.form.role_id);
             axios.post(baseUrl+'api/users/create', this.form)
                 .then((response) => {
                     this.$router.push('/users');
-                    Swal.fire('SUCCESS', 'User Added Successfully.', 'success')
+                    Swal.fire('SUCCESS', 'User Added and Verification Email Sent Successfully.', 'success')
                 })
                 .catch(function (error) {
-                    console.log(error.response.data);
+                    Swal.fire({
+                        title: 'Error!',
+                        text: error.response.data.message,
+                        icon: 'error',
+                        confirmButtonText: 'TRY AGAIN'
+                    })
 
                 })
         },
@@ -96,8 +104,6 @@ export default {
                 .then((response) => {
                     console.log(response.data);
                     this.departments = response.data;
-
-
                 })
                 .catch(function (error) {
                     console.log(error.response.data);

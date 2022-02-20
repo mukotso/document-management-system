@@ -10,4 +10,6 @@ class DepartmentDocument extends Model
          'document_id','department_id',
     ];
     protected $table="department_documents";
+
+
 }

@@ -18,10 +18,10 @@ class CreateDocumentsTable extends Migration
             $table->string('name');
             $table->integer('category_id');
             $table->integer('uploaded_by');
-            $table->string('description');
+            $table->string('access_level');
             $table->string('status')->default('active');
             $table->string('file_path');
-            $table->string('decline_reason')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
