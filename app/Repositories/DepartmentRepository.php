@@ -10,7 +10,7 @@ class DepartmentRepository implements DepartmentRepositoryInterface
 {
     public function getAllDepartments()
     {
-        return Department::all();
+        return Department::orderBy('created_at', 'ASC')->get();
     }
     public function deleteDepartment($departmentId)
     {
@@ -24,5 +24,6 @@ class DepartmentRepository implements DepartmentRepositoryInterface
     {
         return $department->update($newDetails);
     }
+
 
 }

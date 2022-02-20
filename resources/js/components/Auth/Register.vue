@@ -52,9 +52,9 @@
                                     Department
                                 </label>
 
-                                <select v-model="form.genre_id" id="genre"
+                                <select v-model="form.department_id" id="genre"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option v-model="department_id" v-for="department in departments"
+                                    <option  v-for="department in departments"
                                             :key="department.id" :value="department.id">{{ department.name }}
                                     </option>
                                 </select>
@@ -143,7 +143,7 @@ export default {
                 })
                 .catch(function (error) {
                     // console.log(error.response.data.message);
-                    console.log(error);
+                    console.log(error.response.data);
                 })
 
 
@@ -156,3 +156,4 @@ export default {
 <style scoped>
 
 </style>
+

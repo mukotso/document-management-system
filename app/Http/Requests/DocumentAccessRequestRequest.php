@@ -24,8 +24,8 @@ class DocumentAccessRequestRequest extends FormRequest
     public function rules()
     {
         return [
-            'document_id' => 'required, {$this->DocumentAccessRequest->id}',
-            'description' => 'required,{$this->DocumentAccessRequest->id}',
+            'document_id' => 'required',
+            'description' => 'required',
         ];
     }
 

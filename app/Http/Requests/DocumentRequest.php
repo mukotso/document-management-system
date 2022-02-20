@@ -26,7 +26,8 @@ class DocumentRequest extends FormRequest
         return [
             'name' => 'required|max:155',
             'category_id' => 'required',
-            'description' => 'required',
+            'access_level' => 'required',
+            'document' => 'required|mimes:pdf,docx,doc|max:5240',
         ];
     }
 
@@ -36,6 +37,8 @@ class DocumentRequest extends FormRequest
             'name.required' => 'The name input is required',
             'description.required' => 'The description input is required',
             'category_id.required' => 'Please select the category',
+            'document.required' => 'Please select the document',
+            'document.max' => 'Document too large ..The document size should not be greater than 5Mbs',
         ];
     }
 }

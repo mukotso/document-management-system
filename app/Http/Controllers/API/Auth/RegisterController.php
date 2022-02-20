@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function register(UserRequest $request)
+    public function register(Request $request)
     {
         $useData = $request->all();
         $useData['status'] = 'active';
