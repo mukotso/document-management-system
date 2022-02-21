@@ -59,7 +59,6 @@ export default {
                 value: 'name',
             },
             { text: 'Category', value: 'category.name' },
-            { text: 'User', value: 'user.name' },
             { text: 'Deleted-at', value: 'deleted_at' },
         ],
         documents: [],
