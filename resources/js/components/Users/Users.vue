@@ -79,7 +79,6 @@ export default {
             },
             { text: 'Email', value: 'email' },
             { text: 'Phone Number', value: 'tel' },
-            { text: 'User Type', value: 'type' },
             { text: 'Status', value: 'status' },
             { text: 'created-at', value: 'created_at' },
             { text: 'Department', value: 'department.name' },

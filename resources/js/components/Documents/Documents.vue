@@ -76,6 +76,7 @@
 
 <script>
 import baseUrl from "../../baseUrl";
+import {mapGetters} from "vuex";
 const Swal = require('sweetalert2');
 export default {
     data: () => ({
@@ -92,18 +93,27 @@ export default {
             { text: 'Actions', value: 'actions', sortable: false },
         ],
         documents: [],
+        userId:0,
         search: '',
     }),
 
-
-    beforeMount () {
-        this.getDocuments()
-
+    computed: {
+        ...mapGetters('auth', {
+            authState: 'authState',
+            user: 'user'
+        })
     },
+
+    beforeMount() {
+        this.userId=this.user.id;
+        this.getDocuments ();
+    },
+
+
 
     methods: {
         getDocuments () {
-            axios.get(baseUrl+'/api/documents')
+            axios.get(baseUrl+'api/documents')
                 .then((response) => {
                     this.documents = response.data;
 

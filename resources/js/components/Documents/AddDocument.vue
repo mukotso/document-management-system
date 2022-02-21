@@ -1,14 +1,12 @@
 <template>
 
-    <form  @submit.prevent="addDocument">
+    <form @submit.prevent="addDocument">
         <h1>ADD NEW DOCUMENT</h1>
         <v-text-field
             v-model="form.name"
             label="Name"
             required
         ></v-text-field>
-
-
 
 
         <v-select
@@ -53,15 +51,17 @@
 
 import baseUrl from "../../baseUrl";
 import Swal from "sweetalert2";
+import {mapGetters} from "vuex";
+
 export default {
 
     data: () => ({
-        form:{
+        form: {
             name: '',
             category_id: '',
-            access_level:'',
-            document:'',
-            department_id:''
+            access_level: '',
+            document: '',
+            uploaded_by: '',
         },
         currentFile: undefined,
         progress: 0,
@@ -71,14 +71,21 @@ export default {
             'Below Analyst',
             'Cytonn Team',
         ],
-        categories:"",
+        categories: "",
 
 
     }),
+    computed: {
+        ...mapGetters('auth', {
+            authState: 'authState',
+            user: 'user'
+        })
+    },
 
-    mounted () {
+    mounted() {
         this.getCategories()
-
+        this.form.department_id = this.user.department_id;
+        this.form.uploaded_by = this.user.id;
     },
 
     methods: {
@@ -86,45 +93,46 @@ export default {
         selectFile(file) {
             this.form.document = file;
         },
-          addDocument: function () {
+        addDocument: function () {
 
-                let formData = new FormData();
-                formData.append('name', this.form.name);
-                formData.append('category_id', this.form.category_id);
-                formData.append('access_level', this.form.access_level);
-                formData.append('document', this.form.document);
-                // console.log(formData)
+            let formData = new FormData();
+            formData.append('name', this.form.name);
+            formData.append('category_id', this.form.category_id);
+            formData.append('access_level', this.form.access_level);
+            formData.append('document', this.form.document);
+            formData.append('department_id', this.form.department_id);
+            formData.append('uploaded_by', this.form.uploaded_by);
+            // console.log(formData)
 
-              axios({
-                  method: 'post',
-                  url: baseUrl+'api/documents/create',
-                  data: formData,
-                  headers: {
-                      Authorization: 'Bearer ' + window.localStorage.getItem('token')
-                  }
-              }).then((response) => {
-                        console.log(response.data);
-                        this.$router.push('/documents');
-                        Swal.fire('SUCCESS', 'Document Added Successfully.', 'success');
-                    })
-                    .catch(function (error) {
-                        console.log(error.response.data);
+            axios({
+                method: 'post',
+                url: baseUrl + 'api/documents/create',
+                data: formData,
+                headers: {
+                    Authorization: 'Bearer ' + window.localStorage.getItem('token')
+                }
+            }).then((response) => {
+                console.log(response.data);
+                this.$router.push('/documents');
+                Swal.fire('SUCCESS', 'Document Added Successfully.', 'success');
+            })
+                .catch(function (error) {
+                    console.log(error.response.data);
 
-                    })
+                })
 
 
         },
 
 
-
-        getCategories () {
+        getCategories() {
             console.log(window.localStorage.getItem('token'))
 
             axios({
                 method: 'get',
-                'Content-Type' : 'application/json',
-                'Accept' : 'application/json',
-                url:baseUrl+'api/categories',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                url: baseUrl + 'api/categories',
                 headers: {
                     Authorization: 'Bearer' + window.localStorage.getItem('token')
                 }
@@ -144,15 +152,12 @@ export default {
         },
 
 
-
-
-
     },
 }
 </script>
 
 <style scoped>
-form{
+form {
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 5%;

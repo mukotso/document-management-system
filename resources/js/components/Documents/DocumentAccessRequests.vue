@@ -129,7 +129,7 @@
 <!--                >-->
 <!--                    mdi-pencil-->
 <!--                </v-icon>-->
-                <v-icon v-if="user.id==1"
+                <v-icon
                     medium
                     @click="deleteDocument(item)"
                     class="deleteIcon"
@@ -137,7 +137,7 @@
                     mdi-delete
                 </v-icon>
 
-                <span v-if="user.id==1">
+                <span>
                 <v-btn
                     color="green"
                     elevation="2"
@@ -273,7 +273,7 @@ export default {
             )
                 .then((response) => {
                     console.log(response.data);
-                    this.$router.push('/my-temporary-access-documents');
+                    this.$router.push('/my-temporary-documents');
                     Swal.fire('SUCCESS', 'Access Granted Successfully.', 'success')
                 })
                 .catch(function (error) {

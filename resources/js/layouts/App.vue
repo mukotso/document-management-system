@@ -32,7 +32,7 @@
                                     nav
                                 >
                                     <v-list-item v-if="user.role_id==1"
-                                        v-for="item in superAdminItems"
+                                        v-for="item in SuperAdminItems"
                                         :key="item.title"
                                         :to="item.to"
                                         link

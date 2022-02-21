@@ -3,18 +3,20 @@
 namespace App\Repositories;
 
 use App\Interfaces\DocumentRepositoryInterface;
+use App\Mail\AccessRequest;
 use App\Models\Department;
 use App\Models\DepartmentDocument;
 use App\Models\Document;
 use App\Models\DocumentAccessRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class DocumentRepository implements DocumentRepositoryInterface
 {
     public function getAllDocuments()
     {
-        return Document::with('category','user')->get();
+        return Document::with('category','user','department')->get();
     }
 
     public function createDocument(array $documentDetails)
@@ -34,10 +36,9 @@ class DocumentRepository implements DocumentRepositoryInterface
             $path = $documentDetails['document']->storeAs('public/documents', $fileNameToStore);
 
         $documentDetails['file_path']=$path;
-        $documentDetails['uploaded_by']=2;
         $document = Document::create($documentDetails);
         DepartmentDocument::create([
-            'department_id' => $document->user[0]->department_id,
+            'department_id' => $documentDetails['department_id'],
             'document_id' => $document->id,
         ]);
 
@@ -73,8 +74,18 @@ class DocumentRepository implements DocumentRepositoryInterface
 
     public function storeAccessRequest($documentDetails)
     {
-        $documentDetails['user_id']=2;
-        return DocumentAccessRequest::create($documentDetails);
+
+        $accessRequest=DocumentAccessRequest::create($documentDetails);
+        $manager=User::where('role_id',2)->where('department_id',$documentDetails['department_id'])->get();
+        $details = [
+            'name' => $manager[0]->name,
+            'requesterName' => $documentDetails['username'],
+            'document' => $documentDetails['name'],
+            'description' =>$documentDetails['description'],
+        ];
+
+        Mail::to($manager[0]->email)->send(new AccessRequest($details));
+        return $accessRequest;
     }
 
     public function myAccessRequest($userId)

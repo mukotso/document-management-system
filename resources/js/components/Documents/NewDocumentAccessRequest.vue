@@ -55,6 +55,8 @@ export default {
             department_id: '',
             document_id: '',
             description: '',
+            user_id:'',
+            username:'',
         },
 
         departments: "",
@@ -63,7 +65,17 @@ export default {
 
     }),
 
+    computed: {
+        ...mapGetters('auth', {
+            authState: 'authState',
+            user: 'user'
+        })
+    },
 
+    mounted() {
+        this.form.user_id = this.user.id;
+        this.form.username = this.user.name;
+    },
 
 
     methods: {

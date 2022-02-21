@@ -10,6 +10,7 @@ use App\Models\Department;
 use App\Http\Controllers\Controller;
 use App\Models\Document;
 use App\Models\DocumentAccessRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DocumentsController extends Controller

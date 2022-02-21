@@ -3,8 +3,11 @@
 namespace App\Repositories;
 
 use App\Interfaces\DocumentAccessRepositoryInterface;
+use App\Mail\AccessRequest;
 use App\Models\Document;
 use App\Models\DocumentAccessRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class DocumentAccessRequestRepository implements DocumentAccessRepositoryInterface
 {
@@ -16,6 +19,8 @@ class DocumentAccessRequestRepository implements DocumentAccessRepositoryInterfa
     public function createRequest(array $accessRequestDetails)
     {
         return DocumentAccessRequest::create($accessRequestDetails);
+
+
     }
     public function updateRequest($accessRequest, array $newDetails)
     {
