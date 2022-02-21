@@ -94,7 +94,7 @@
 
                     <template>
 
-                        <v-btn
+                        <v-btn  v-if="user.role_id==3"
                             color="primary"
                             dark
                             class="mb-2"
@@ -137,7 +137,7 @@
                     mdi-delete
                 </v-icon>
 
-                <span>
+                <span v-if="user.role_id !=3 ">
                 <v-btn
                     color="green"
                     elevation="2"
@@ -168,7 +168,7 @@ export default {
                 text: 'Name',
                 align: 'start',
                 sortable: false,
-                value: 'user.name',
+                value: 'description',
             },
 
             { text: 'Description', value: 'description' },

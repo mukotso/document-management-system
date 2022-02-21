@@ -54,13 +54,13 @@
                     mdi-download
                 </v-icon>
 
-                <v-icon
-                    medium
-                    class="mr-2 editIcon"
-                    @click="editDocument(item)"
-                >
-                    mdi-pencil
-                </v-icon>
+<!--                <v-icon-->
+<!--                    medium-->
+<!--                    class="mr-2 editIcon"-->
+<!--                    @click="editDocument(item)"-->
+<!--                >-->
+<!--                    mdi-pencil-->
+<!--                </v-icon>-->
                 <v-icon
                     medium
                     @click="deleteDocument(item)"
@@ -88,7 +88,7 @@ export default {
                 value: 'name',
             },
             { text: 'Category', value: 'category.name' },
-            { text: 'Access Level', value: 'access_level' },
+            // { text: 'Access Level', value: 'access_level' },
             { text: 'created-at', value: 'created_at' },
             { text: 'Actions', value: 'actions', sortable: false },
         ],
